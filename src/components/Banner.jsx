@@ -23,7 +23,7 @@ const Banner = () => {
                 loop={true}
                 autoplay={{ delay: 2000 }}
                 pagination={{ clickable: true }}
-                className="w-full lg:w-[100%] h-[350px] lg:h-[500px] mx-auto rounded-lg shadow-lg"
+                className="w-full lg:w-[100%] h-[350px] lg:h-[400px] mx-auto rounded-lg shadow-lg"
             >
 
                 {/* ✅ Slide 1 */}
