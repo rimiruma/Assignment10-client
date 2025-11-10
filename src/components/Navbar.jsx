@@ -18,10 +18,10 @@ const Navbar = () => {
   const links = (
     <>
       <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/all-properties">All Properties</NavLink></li>
+      <li><NavLink to="/allProperties">All Properties</NavLink></li>
       <li><NavLink to="/addProperty">Add Properties</NavLink></li>
       <li><NavLink to="/my-properties">My Properties</NavLink></li>
-      <li><NavLink to="/my-ratings">My Ratings</NavLink></li>
+      <li><NavLink to="/myRatings">My Ratings</NavLink></li>
     </>
   );
 

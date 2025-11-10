@@ -4,6 +4,11 @@ import HomeLayouts from "../Layouts/HomeLayouts";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
 import AddPropertyPage from "../components/AddPropertyPage";
+import PropertyDeatails from "../components/PropertyDetails";
+import PropertyDetails from "../components/PropertyDetails";
+import PrivateRoute from "../Provider/PrivateRoute";
+import MyRatingsPage from "../components/MyRatingsPage";
+import AllPropertiesPage from "../components/AllPropertiesPage";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +22,25 @@ const router = createBrowserRouter([
             {
                 path: '/addProperty',
                 Component: AddPropertyPage
+            },
+            {
+                path: '/propertyDetails/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`),
+                element: <PrivateRoute>
+                    <PropertyDetails></PropertyDetails>
+                </PrivateRoute>
+            },
+            {
+                path: '/myRatings',
+                element: <PrivateRoute>
+                    <MyRatingsPage></MyRatingsPage>
+                </PrivateRoute>
+            },
+            {
+                path: '/allProperties',
+                element: <PrivateRoute>
+                    <AllPropertiesPage></AllPropertiesPage>
+                </PrivateRoute>
             },
             {
                 path: '/signUp',

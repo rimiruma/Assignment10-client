@@ -1,5 +1,7 @@
+import { Link } from "react-router";
+
 const HomeFeatured = ({ property }) => {
-    const { image, name, category, description, location, price } = property;
+    const { _id, image, name, category, description, location, price } = property;
 
     return (
         <div className="card bg-white w-full shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden">
@@ -18,7 +20,7 @@ const HomeFeatured = ({ property }) => {
                 <p className="text-sm text-gray-500">Location: {location}</p>
                 <p className="font-bold text-lg">Price: ${price.toLocaleString()}</p>
                 <div className="mt-4">
-                    <button className="btn btn-primary px-14 py-2">View Details</button>
+                <Link to={`/propertyDetails/${_id}`} className="btn btn-primary">View Details</Link>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
@@ -7,7 +7,22 @@ import { toast } from "react-toastify";
 const SignUp = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { createUser, googleSignIn } = use(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
+
+  const saveUserToDB = async (user) => {
+    const userData = {
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL,
+      created_at: new Date()
+    };
+
+    await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -19,31 +34,28 @@ const SignUp = () => {
     const password = e.target.password.value;
 
     if (!/[A-Z]/.test(password)) {
-      setError("Password must include at least one Uppercase letter.");
-      toast.error("Password must contain an Uppercase letter");
-      return;
+      return toast.error("Password must contain an Uppercase Letter");
     }
     if (!/[a-z]/.test(password)) {
-      setError("Password must include at least one Lowercase letter.");
-      toast.error("Password must contain a Lowercase letter");
-      return;
+      return toast.error("Password must contain a Lowercase Letter");
     }
     if (password.length < 6) {
-      setError("Password must be at least 6 characters long.");
-      toast.error("Password must be minimum 6 characters");
-      return;
+      return toast.error("Password must be at least 6 characters long");
     }
+
     createUser(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
+      .then((res) => {
+        const loggedUser = res.user;
 
         updateProfile(loggedUser, {
           displayName: name,
-          photoURL: photoURL,
+          photoURL,
+        }).then(() => {
+          saveUserToDB(loggedUser);
         });
 
         toast.success("Registration Successful!");
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => {
         setError(err.message);
@@ -53,7 +65,8 @@ const SignUp = () => {
 
   const handleGoogleSignUp = () => {
     googleSignIn()
-      .then(() => {
+      .then((res) => {
+        saveUserToDB(res.user);
         toast.success("Google Login Successful!");
         navigate("/");
       })
@@ -64,41 +77,41 @@ const SignUp = () => {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="card bg-base-100 w-full max-w-sm shadow-2xl p-8">
-        <div className="card-body">
-          <h1 className="text-4xl font-bold text-center">Create Account</h1>
+    <div className="min-h-screen bg-base-200 flex justify-center items-center px-5">
+      <div className="card w-full max-w-md bg-white shadow-xl p-8 rounded-xl">
+        
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Create Your Account
+        </h1>
 
-          <form onSubmit={handleSignUp}>
-            <label className="label">Full Name</label>
-            <input type="text" name="name" className="input" />
+        <form onSubmit={handleSignUp}>
+          <input type="text" name="name" placeholder="Full Name"
+            className="input input-bordered w-full mb-3" required />
+          <input type="email" name="email" placeholder="Email"
+            className="input input-bordered w-full mb-3" required />
+          <input type="text" name="photo" placeholder="Photo URL"
+            className="input input-bordered w-full mb-3" />
+          <input type="password" name="password" placeholder="Password"
+            className="input input-bordered w-full mb-3" required />
 
-            <label className="label">Email</label>
-            <input type="email" name="email" className="input" />
+          {error && <p className="text-red-500 mb-2 text-sm">{error}</p>}
 
-            <label className="label">Photo URL</label>
-            <input type="text" name="photo" className="input" />
+          <button className="btn btn-primary w-full mt-2">Sign Up</button>
+        </form>
 
-            <label className="label">Password</label>
-            <input type="password" name="password" className="input" />
+        <button
+          onClick={handleGoogleSignUp}
+          className="btn btn-outline w-full mt-4"
+        >
+          Continue with Google
+        </button>
 
-            {error && <p className="text-red-500 mt-1">{error}</p>}
-
-            <button className="btn btn-primary mt-4 w-full">Sign Up</button>
-          </form>
-
-          {/* Google Signup */}
-          <button onClick={handleGoogleSignUp} className="btn btn-outline mt-2 w-full">
-            Continue with Google
-          </button>
-
-          <p className="mt-4 text-center">
-            Already have an account?{" "}
-            <Link className="text-blue-500" to="/login">
-              Login
-            </Link>
-          </p>
-        </div>
+        <p className="mt-4 text-center">
+          Already have an account? {""}
+          <Link className="text-blue-500 font-semibold" to="/login">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
