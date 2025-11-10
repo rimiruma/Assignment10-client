@@ -68,30 +68,6 @@ const Banner = () => {
                     </div>
                 </SwiperSlide>
 
-                {/* ✅ Slide 4 */}
-                <SwiperSlide className="relative">
-                    <img src={bannerImage4} className="w-full h-full object-cover rounded-lg" alt="" />
-                    <div className="absolute flex flex-col justify-center items-center text-center text-white px-4">
-                        <h2 className="text-2xl lg:text-4xl font-bold">Modern Villas</h2>
-                        <p className="mt-2 text-sm lg:text-lg">
-                            Stylish living with premium lifestyle amenities.
-                        </p>
-                        <button className="btn btn-primary btn-sm mt-4">View More</button>
-                    </div>
-                </SwiperSlide>
-
-                {/* ✅ Slide 5 */}
-                <SwiperSlide className="relative">
-                    <img src={bannerImage5} className="w-full h-full object-cover rounded-lg" alt="" />
-                    <div className="absolute flex flex-col justify-center items-center text-center text-white px-4">
-                        <h2 className="text-2xl lg:text-4xl font-bold">Affordable Homes</h2>
-                        <p className="mt-2 text-sm lg:text-lg">
-                            Budget-friendly options for every family.
-                        </p>
-                        <button className="btn btn-primary btn-sm mt-4">Discover</button>
-                    </div>
-                </SwiperSlide>
-
                 {/* ✅ Slide 6 */}
                 <SwiperSlide className="relative">
                     <img src={bannerImage6} className="w-full h-full object-cover rounded-lg" alt="" />
