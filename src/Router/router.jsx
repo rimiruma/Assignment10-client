@@ -3,6 +3,7 @@ import Root from "../components/Root";
 import HomeLayouts from "../Layouts/HomeLayouts";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
+import AddPropertyPage from "../components/AddPropertyPage";
 
 const router = createBrowserRouter([
     {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: HomeLayouts,
+            },
+            {
+                path: '/addProperty',
+                Component: AddPropertyPage
             },
             {
                 path: '/signUp',
