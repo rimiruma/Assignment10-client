@@ -20,7 +20,7 @@ const HomeFeatured = ({ property }) => {
                 <p className="text-sm text-gray-500">Location: {location}</p>
                 <p className="font-bold text-lg">Price: ${price.toLocaleString()}</p>
                 <div className="mt-4">
-                <Link to={`/propertyDetails/${_id}`} className="btn btn-primary">View Details</Link>
+                <Link to={`/propertyDetails/${_id}`} className="btn btn-primary px-16">View Details</Link>
                 </div>
             </div>
         </div>

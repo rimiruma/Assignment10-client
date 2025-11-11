@@ -52,7 +52,7 @@ const Login = () => {
 
             {error && <p className="text-red-500 mt-1">{error}</p>}
 
-            <button className="btn btn-neutral mt-4 w-full">Login</button>
+            <button className="btn btn-primary mt-4 w-full">Login</button>
           </form>
 
           <button

@@ -49,11 +49,11 @@ const AddPropertyPage = () => {
 
       <form onSubmit={handleAddProperty} className="grid gap-4">
         
-        <input type="text" name="name" placeholder="Property Name" className="input input-bordered" required />
+        <input type="text" name="name" placeholder="Property Name" className="input input-bordered w-full" required />
         
-        <textarea name="description" placeholder="Description" className="textarea textarea-bordered" required></textarea>
+        <textarea name="description" placeholder="Description" className="textarea textarea-bordered w-full" required></textarea>
 
-        <select name="category" className="select select-bordered" required>
+        <select name="category" className="select select-bordered w-full" required>
           <option disabled selected>Select Category</option>
           <option>Rent</option>
           <option>Sale</option>
@@ -61,15 +61,15 @@ const AddPropertyPage = () => {
           <option>Land</option>
         </select>
 
-        <input type="number" name="price" placeholder="Price" className="input input-bordered" required />
+        <input type="number" name="price" placeholder="Price" className="input input-bordered w-full" required />
 
-        <input type="text" name="location" placeholder="Location" className="input input-bordered" required />
+        <input type="text" name="location" placeholder="Location" className="input input-bordered w-full" required />
 
-        <input type="url" name="image" placeholder="Image Link" className="input input-bordered" required />
+        <input type="url" name="image" placeholder="Image Link" className="input input-bordered w-full" required />
 
-        <input type="email" value={user?.email} readOnly className="input input-bordered bg-gray-100" />
+        <input type="email" value={user?.email} readOnly className="input input-bordered bg-gray-100 w-full" />
 
-        <input type="text" value={user?.displayName} readOnly className="input input-bordered bg-gray-100" />
+        <input type="text" value={user?.displayName} readOnly className="input input-bordered bg-gray-100 w-full" />
 
         <button className="btn btn-primary mt-4">Add Property</button>
       </form>

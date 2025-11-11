@@ -1,22 +1,21 @@
-import React, { useEffect, useState, useContext, use } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MyPropertiesPage = () => {
-    const { user } = use(AuthContext);
+    const { user } = useContext(AuthContext);
     const [myProperties, setMyProperties] = useState([]);
 
     useEffect(() => {
         if (!user?.email) return;
 
-        fetch(`http://localhost:5000/properties?email=${user.email}`)
+        fetch(`http://localhost:5000/properties?email=${user.email.toLowerCase()}`)
             .then(res => res.json())
             .then(data => setMyProperties(data))
             .catch(err => console.error(err));
     }, [user]);
 
-    // Delete Handler
     const handleDelete = (id) => {
         const confirmDelete = confirm("Are you sure you want to delete?");
         if (!confirmDelete) return;
@@ -52,7 +51,7 @@ const MyPropertiesPage = () => {
                                 <p><span className="font-semibold">Price:</span> ${property.price}</p>
                                 <p><span className="font-semibold">Location:</span> {property.location}</p>
                                 <p className="text-sm opacity-70">
-                                    Posted: {new Date(property.postedAt).toLocaleDateString()}
+                                    Posted: {property.postedAt ? new Date(property.postedAt).toLocaleDateString() : "N/A"}
                                 </p>
 
                                 <div className="card-actions justify-between mt-3">

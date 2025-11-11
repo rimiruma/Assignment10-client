@@ -13,9 +13,12 @@ const AllPropertiesPage = () => {
 
     return (
         <div className="bg-gray-100 min-h-screen p-8">
-            <h2 className="text-3xl font-bold text-center mb-8">
+            <h2 className="text-3xl font-bold text-center mb-2">
                 All Properties
             </h2>
+            <p className="text-lg text-gray-600 text-center mb-8">
+                Explore our collection of homes and real estate listings available for sale and rent.
+            </p>
 
             {properties.length === 0 ? (
                 <p className="text-center text-gray-500">
