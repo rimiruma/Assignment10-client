@@ -10,6 +10,7 @@ import PrivateRoute from "../Provider/PrivateRoute";
 import MyRatingsPage from "../components/MyRatingsPage";
 import AllPropertiesPage from "../components/AllPropertiesPage";
 import MyPropertiesPage from "../components/MyPropertiesPage";
+import UpdatePropertyPage from "../components/UpdatePropertyPage";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
                 path: '/myProperties',
                 element: <PrivateRoute>
                     <MyPropertiesPage></MyPropertiesPage>
+                </PrivateRoute>
+            },
+            {
+                path: '/updataPage',
+                element: <PrivateRoute>
+                    <UpdatePropertyPage></UpdatePropertyPage>
                 </PrivateRoute>
             },
             {

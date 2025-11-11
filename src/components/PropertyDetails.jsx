@@ -27,7 +27,6 @@ const PropertyDetails = () => {
     userEmail,
   } = property;
 
-  // ✅ Safe fallback date
   const postedDate = created_at
     ? new Date(created_at).toLocaleDateString()
     : new Date().toLocaleDateString();
@@ -68,14 +67,12 @@ const PropertyDetails = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
       
-      {/* ================= Property Main Image ================= */}
       <img
         className="w-full h-96 object-cover rounded-2xl shadow-lg"
         src={image}
         alt={name}
       />
 
-      {/* ================= Property Details Card ================= */}
       <div className="mt-8 bg-white p-6 rounded-2xl shadow-md">
         <h2 className="text-4xl font-bold text-gray-800 mb-2">{name}</h2>
         <p className="text-gray-600 mb-4">{description}</p>
@@ -95,7 +92,6 @@ const PropertyDetails = () => {
             {category}
           </p>
 
-          {/* ================= Posted By & Date ================= */}
           <div className="bg-blue-50 px-4 py-3 rounded-lg mt-4 border border-blue-200">
             <p className="text-gray-800">
               <span className="font-semibold">Posted By:</span> {username}
@@ -115,7 +111,6 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      {/* ================= Review Submit Box ================= */}
       <div className="mt-10 bg-white p-6 rounded-2xl shadow-md">
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
           ⭐ Submit Your Review
