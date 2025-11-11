@@ -9,6 +9,7 @@ import PropertyDetails from "../components/PropertyDetails";
 import PrivateRoute from "../Provider/PrivateRoute";
 import MyRatingsPage from "../components/MyRatingsPage";
 import AllPropertiesPage from "../components/AllPropertiesPage";
+import MyPropertiesPage from "../components/MyPropertiesPage";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`),
                 element: <PrivateRoute>
                     <PropertyDetails></PropertyDetails>
+                </PrivateRoute>
+            },
+            {
+                path: '/myProperties',
+                element: <PrivateRoute>
+                    <MyPropertiesPage></MyPropertiesPage>
                 </PrivateRoute>
             },
             {
