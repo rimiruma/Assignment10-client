@@ -11,6 +11,7 @@ import MyRatingsPage from "../components/MyRatingsPage";
 import AllPropertiesPage from "../components/AllPropertiesPage";
 import MyPropertiesPage from "../components/MyPropertiesPage";
 import UpdatePropertyPage from "../components/UpdatePropertyPage";
+import ErrorPage from "../components/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -64,8 +65,14 @@ const router = createBrowserRouter([
                 path: '/login',
                 Component: Login
             }
+
         ]
     },
+    {
+        path: "*",
+        Component: ErrorPage,
+
+    }
 
 ]);
 
