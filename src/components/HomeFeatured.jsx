@@ -4,7 +4,7 @@ const HomeFeatured = ({ property }) => {
     const { _id, image, name, category, description, location, price } = property;
 
     return (
-        <div className="card bg-white w-full shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden">
+        <div className="card dark:bg-red-500 bg-white w-full shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden">
             <figure className="h-48 overflow-hidden">
                 <img
                     src={image}

@@ -4,13 +4,11 @@ import HomeLayouts from "../Layouts/HomeLayouts";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
 import AddPropertyPage from "../components/AddPropertyPage";
-import PropertyDeatails from "../components/PropertyDetails";
 import PropertyDetails from "../components/PropertyDetails";
 import PrivateRoute from "../Provider/PrivateRoute";
 import MyRatingsPage from "../components/MyRatingsPage";
 import AllPropertiesPage from "../components/AllPropertiesPage";
 import MyPropertiesPage from "../components/MyPropertiesPage";
-import UpdatePropertyPage from "../components/UpdatePropertyPage";
 import ErrorPage from "../components/ErrorPage";
 
 const router = createBrowserRouter([
@@ -24,7 +22,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addProperty',
-                Component: AddPropertyPage
+                element: <PrivateRoute>
+                    <AddPropertyPage></AddPropertyPage>
+                </PrivateRoute>
             },
             {
                 path: '/propertyDetails/:id',
@@ -40,12 +40,6 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: '/updataPage',
-                element: <PrivateRoute>
-                    <UpdatePropertyPage></UpdatePropertyPage>
-                </PrivateRoute>
-            },
-            {
                 path: '/myRatings',
                 element: <PrivateRoute>
                     <MyRatingsPage></MyRatingsPage>
@@ -53,9 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/allProperties',
-                element: <PrivateRoute>
-                    <AllPropertiesPage></AllPropertiesPage>
-                </PrivateRoute>
+                Component: AllPropertiesPage
             },
             {
                 path: '/signUp',
