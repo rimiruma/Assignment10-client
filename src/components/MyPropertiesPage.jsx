@@ -2,31 +2,21 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { FaEdit, FaTrashAlt, FaInfoCircle, FaSearch } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaInfoCircle } from "react-icons/fa";
 import ErrorPage from "./ErrorPage";
-
 
 const MyPropertiesPage = () => {
   const { user } = useContext(AuthContext);
   const [myProperties, setMyProperties] = useState([]);
-  const [sortOrder, setSortOrder] = useState("");
-  const [searchText, setSearchText] = useState("");
 
-  // ✅ Fetch properties with search & sort
+  // ✅ Fetch user’s properties
   useEffect(() => {
     if (!user?.email) return;
-
-    const timer = setTimeout(() => {
-      fetch(
-        `http://localhost:3000/properties?email=${user.email.toLowerCase()}&sort=${sortOrder}&search=${searchText}`
-      )
-        .then((res) => res.json())
-        .then((data) => setMyProperties(data))
-        .catch((err) => console.error(err));
-    }, 400); // debounce delay for smooth typing
-
-    return () => clearTimeout(timer);
-  }, [user, sortOrder, searchText]);
+    fetch(`http://localhost:3000/properties?email=${user.email.toLowerCase()}`)
+      .then((res) => res.json())
+      .then((data) => setMyProperties(data))
+      .catch((err) => console.error(err));
+  }, [user]);
 
   // ✅ Delete handler
   const handleDelete = (id) => {
@@ -45,8 +35,7 @@ const MyPropertiesPage = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              setMyProperties(myProperties.filter((prop) => prop._id !== id));
-
+              setMyProperties(myProperties.filter((p) => p._id !== id));
               Swal.fire({
                 title: "Deleted!",
                 text: "Your property has been removed successfully.",
@@ -56,59 +45,21 @@ const MyPropertiesPage = () => {
               });
             }
           })
-          .catch((err) => {
-            console.error(err);
-            Swal.fire("Error!", "Something went wrong. Try again.", "error");
-          });
+          .catch(() =>
+            Swal.fire("Error!", "Something went wrong. Try again.", "error")
+          );
       }
     });
   };
 
   return (
     <div className="max-w-6xl mx-auto px-4 my-10">
-      <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
-        <h2 className="text-3xl font-bold text-center md:text-left">
-          My Properties
-        </h2>
-
-        <div className="flex flex-col md:flex-row gap-10 items-center">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search by name..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              className="input input-bordered input-sm pl-10 w-60"
-            />
-            <FaSearch className="absolute left-3 top-2.5 text-gray-500" />
-          </div>
-
-          <div className="flex items-center gap-5">
-            <label htmlFor="sort" className="font-semibold text-gray-700">
-              <span>Sort by:</span>
-            </label>
-            <select
-              id="sort"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="select select-bordered select-sm"
-            >
-              <option value="">Default</option>
-              <option value="asc">Price: Low → High</option>
-              <option value="desc">Price: High → Low</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      <h2 className="text-3xl font-bold text-center mb-8">My Properties</h2>
 
       {myProperties.length === 0 ? (
-        searchText ? (
-          <ErrorPage /> 
-        ) : (
-          <p className="text-center font-semibold">
-            You haven’t added any properties yet.
-          </p>
-        )
+        <p className="text-center font-semibold">
+          You haven’t added any properties yet.
+        </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {myProperties.map((property) => (
@@ -143,8 +94,7 @@ const MyPropertiesPage = () => {
                   Posted By: {property.username}
                 </p>
 
-                <div className="flex justify-end gap-5 mt-4 text-xl">
-                  {/* ✏️ Edit */}
+                <div className="flex gap-5 mt-4 text-xl">
                   <Link
                     to="/updataPage"
                     className="text-blue-600 hover:text-blue-800 transition-transform transform hover:scale-125"
@@ -161,7 +111,6 @@ const MyPropertiesPage = () => {
                     <FaTrashAlt />
                   </button>
 
-                  {/* ℹ️ Details */}
                   <Link
                     to={`/propertyDetails/${property._id}`}
                     className="text-gray-700 hover:text-gray-900 transition-transform transform hover:scale-125"
