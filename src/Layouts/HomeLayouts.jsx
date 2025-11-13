@@ -3,7 +3,7 @@ import FeaturedSection from "../components/FeaturedSection";
 import WhyHomeNest from "../components/HomeNest";
 import OurFacilities from "../components/OurFacilities";
 
-const featuredProductsPromise = fetch('http://localhost:3000/featured-properties')
+const featuredProductsPromise = fetch('https://assignment10-server-zeta.vercel.app/featured-properties')
     .then(res => res.json());
 
 const HomeLayouts = () => {

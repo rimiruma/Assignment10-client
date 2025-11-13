@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrashAlt, FaInfoCircle } from "react-icons/fa";
 
@@ -9,11 +10,12 @@ const MyPropertiesPage = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user?.email) return;
     setLoading(true);
-    fetch(`http://localhost:3000/properties?email=${user.email.toLowerCase()}`)
+    fetch(`https://assignment10-server-zeta.vercel.app/properties?email=${user.email.toLowerCase()}`)
       .then((res) => res.json())
       .then((data) => {
         setMyProperties(data);
@@ -34,7 +36,7 @@ const MyPropertiesPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/properties/${id}`, { method: "DELETE" })
+        fetch(`https://assignment10-server-zeta.vercel.app/properties/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -52,6 +54,11 @@ const MyPropertiesPage = () => {
     setShowModal(true);
   };
 
+  // ✅ View Details Handler
+  // const handleViewDetails = (id) => {
+  //   navigate(`/property/${id}`);
+  // };
+
   // Update property
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -68,7 +75,7 @@ const MyPropertiesPage = () => {
       image: form.image.value,
     };
 
-    fetch(`http://localhost:3000/properties/${selectedProperty._id}`, {
+    fetch(`https://assignment10-server-zeta.vercel.app/properties/${selectedProperty._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedProperty),
@@ -146,12 +153,13 @@ const MyPropertiesPage = () => {
                 >
                   <FaTrashAlt />
                 </button>
-                <button
+                {/* ✅ Fixed View Details Button */}
+                 <Link to={`/propertyDetails/${property._id}`}
                   className="text-gray-700 hover:text-gray-900 cursor-pointer transition-transform transform hover:scale-125"
                   title="View Details"
                 >
                   <FaInfoCircle />
-                </button>
+                </Link>
               </div>
             </div>
           </div>

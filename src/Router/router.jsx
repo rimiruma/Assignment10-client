@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/propertyDetails/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignment10-server-zeta.vercel.app/properties/${params.id}`),
                 element: <PrivateRoute>
                     <PropertyDetails></PropertyDetails>
                 </PrivateRoute>

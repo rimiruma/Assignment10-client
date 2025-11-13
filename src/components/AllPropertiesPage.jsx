@@ -12,7 +12,7 @@ const AllPropertiesPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       fetch(
-        `http://localhost:3000/properties?sort=${sortOrder}&search=${searchText}`
+        `https://assignment10-server-zeta.vercel.app/properties?sort=${sortOrder}&search=${searchText}`
       )
         .then((res) => res.json())
         .then((data) => setProperties(data))

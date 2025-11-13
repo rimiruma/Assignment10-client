@@ -10,7 +10,7 @@ const MyRatingsPage = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/reviews-user?email=${user.email}`)
+    fetch(`https://assignment10-server-zeta.vercel.app/reviews-user?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((err) => console.log(err));

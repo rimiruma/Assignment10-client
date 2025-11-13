@@ -17,7 +17,7 @@ const SignUp = () => {
       created_at: new Date()
     };
 
-    await fetch("http://localhost:3000/users", {
+    await fetch("https://assignment10-server-zeta.vercel.app/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userData),

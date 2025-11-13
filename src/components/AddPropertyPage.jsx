@@ -23,7 +23,7 @@ const AddPropertyPage = () => {
       username: user?.displayName
     };
 
-    fetch("http://localhost:3000/properties", {
+    fetch("https://assignment10-server-zeta.vercel.app/properties", {
       method: "POST",
       headers: {
         "content-type": "application/json"

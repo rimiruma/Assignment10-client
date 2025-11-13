@@ -31,7 +31,9 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
-              isActive ? "border-b-2 border-blue-500 text-blue-600" : "text-gray-700 hover:text-blue-500"
+              isActive
+                ? "border-b-2 border-blue-500 text-blue-600"
+                : "text-gray-700 hover:text-blue-500"
             }`
           }
         >
@@ -43,7 +45,9 @@ const Navbar = () => {
           to="/allProperties"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
-              isActive ? "border-b-2 border-green-500 text-green-600" : "text-gray-700 hover:text-green-500"
+              isActive
+                ? "border-b-2 border-green-500 text-green-600"
+                : "text-gray-700 hover:text-green-500"
             }`
           }
         >
@@ -55,7 +59,9 @@ const Navbar = () => {
           to="/addProperty"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
-              isActive ? "border-b-2 border-purple-500 text-purple-600" : "text-gray-700 hover:text-purple-500"
+              isActive
+                ? "border-b-2 border-purple-500 text-purple-600"
+                : "text-gray-700 hover:text-purple-500"
             }`
           }
         >
@@ -67,7 +73,9 @@ const Navbar = () => {
           to="/myProperties"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
-              isActive ? "border-b-2 border-yellow-500 text-yellow-600" : "text-gray-700 hover:text-yellow-500"
+              isActive
+                ? "border-b-2 border-yellow-500 text-yellow-600"
+                : "text-gray-700 hover:text-yellow-500"
             }`
           }
         >
@@ -79,7 +87,9 @@ const Navbar = () => {
           to="/myRatings"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
-              isActive ? "border-b-2 border-pink-500 text-pink-600" : "text-gray-700 hover:text-pink-500"
+              isActive
+                ? "border-b-2 border-pink-500 text-pink-600"
+                : "text-gray-700 hover:text-pink-500"
             }`
           }
         >
@@ -90,7 +100,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md px-4 py-2">
+    <div className="navbar bg-base-100 shadow-md px-4 py-2 relative z-50">
       {/* Left */}
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
@@ -131,9 +141,7 @@ const Navbar = () => {
 
       {/* Theme Toggle */}
       <button
-        onClick={() =>
-          setTheme(theme === "light" ? "dark" : "light")
-        }
+        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         className="btn btn-outline btn-sm mx-2"
         title="Toggle Theme"
       >
@@ -158,26 +166,29 @@ const Navbar = () => {
                 src={user?.photoURL}
                 referrerPolicy="no-referrer"
                 alt="User"
-                className="w-10 h-10 rounded-full border"
+                className="w-10 h-10 rounded-full border border-gray-300 shadow-sm"
               />
             </label>
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 w-48 p-2 shadow bg-base-100 rounded-box"
+              className="menu menu-sm dropdown-content mt-2 w-52 p-3 shadow-lg bg-base-100 rounded-xl border border-gray-200 dark:border-gray-700 z-[9999]"
             >
               <li>
-                <span className="font-semibold">{user?.displayName}</span>
+                <span className="font-semibold text-gray-800 dark:text-gray-200">
+                  {user?.displayName}
+                </span>
               </li>
               <li>
                 <span className="text-xs text-gray-500">{user?.email}</span>
               </li>
+              <div className="divider my-2"></div>
               <li>
                 <button
                   onClick={handleLogout}
-                  className="text-red-600 hover:text-red-800 font-medium"
+                  className="btn btn-error btn-sm text-white w-full"
                 >
-                  Log out
+                  Log Out
                 </button>
               </li>
             </ul>
