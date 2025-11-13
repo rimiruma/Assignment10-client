@@ -67,9 +67,9 @@ const AddPropertyPage = () => {
 
         <input type="url" name="image" placeholder="Image Link" className="input input-bordered w-full" required />
 
-        <input type="email" value={user?.email} readOnly className="input input-bordered bg-gray-100 w-full" />
+        <input type="email" value={user?.email} readOnly className="input input-bordered bg-gray-100 dark:bg-gray-800 w-full" />
 
-        <input type="text" value={user?.displayName} readOnly className="input input-bordered bg-gray-100 w-full" />
+        <input type="text" value={user?.displayName} readOnly className="input input-bordered dark:bg-gray-800 bg-gray-100 w-full" />
 
         <button className="btn btn-primary mt-4">Add Property</button>
       </form>

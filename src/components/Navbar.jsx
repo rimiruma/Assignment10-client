@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
-import { useTheme } from "next-themes";
 import {
   FaHome,
   FaBuilding,
@@ -13,10 +12,16 @@ import {
   FaMoon,
   FaSun,
 } from "react-icons/fa";
+import useTheme from "../hooks/useTheme";
+
+
+
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const { theme, setTheme } = useTheme();
+const { theme, toggleTheme } = useTheme();
+  
 
   const handleLogout = () => {
     logOut()
@@ -33,7 +38,7 @@ const Navbar = () => {
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
               isActive
                 ? "border-b-2 border-blue-500 text-blue-600"
-                : "text-gray-700 hover:text-blue-500"
+                : "text-gray-700 hover:text-blue-500 dark:text-white"
             }`
           }
         >
@@ -47,7 +52,7 @@ const Navbar = () => {
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
               isActive
                 ? "border-b-2 border-green-500 text-green-600"
-                : "text-gray-700 hover:text-green-500"
+                : "text-gray-700 hover:text-green-500 dark:text-white"
             }`
           }
         >
@@ -61,7 +66,7 @@ const Navbar = () => {
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
               isActive
                 ? "border-b-2 border-purple-500 text-purple-600"
-                : "text-gray-700 hover:text-purple-500"
+                : "text-gray-700 hover:text-purple-500 dark:text-white"
             }`
           }
         >
@@ -75,7 +80,7 @@ const Navbar = () => {
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
               isActive
                 ? "border-b-2 border-yellow-500 text-yellow-600"
-                : "text-gray-700 hover:text-yellow-500"
+                : "text-gray-700 hover:text-yellow-500 dark:text-white"
             }`
           }
         >
@@ -89,7 +94,7 @@ const Navbar = () => {
             `flex items-center gap-2 px-3 py-2 font-medium transition ${
               isActive
                 ? "border-b-2 border-pink-500 text-pink-600"
-                : "text-gray-700 hover:text-pink-500"
+                : "text-gray-700 hover:text-pink-500 dark:text-white"
             }`
           }
         >
@@ -140,13 +145,17 @@ const Navbar = () => {
       </div>
 
       {/* Theme Toggle */}
-      <button
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        className="btn btn-outline btn-sm mx-2"
-        title="Toggle Theme"
-      >
-        {theme === "light" ? <FaMoon /> : <FaSun />}
-      </button>
+       {/* Option 1: Use the ToggleButton component */}
+      {/* <ToggleButton theme={theme} toggleTheme={toggleTheme} /> */}
+{/* <button onClick={toggleTheme} className="btn">theme</button> */}
+      {/* Option 2: Or use this DaisyUI toggle input */}
+      <input
+        type="checkbox"
+        value="dark"
+        className="toggle theme-controller mr-6 text-white"
+        checked={theme === "dark"}
+        onChange={(e) => toggleTheme(e.target.checked)}
+      />
 
       {/* User / Auth Buttons */}
       <div className="navbar-end gap-2">
@@ -175,12 +184,12 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-2 w-52 p-3 shadow-lg bg-base-100 rounded-xl border border-gray-200 dark:border-gray-700 z-[9999]"
             >
               <li>
-                <span className="font-semibold text-gray-800 dark:text-gray-200">
+                <span className="font-semibold text-gray-800 dark:text-white">
                   {user?.displayName}
                 </span>
               </li>
               <li>
-                <span className="text-xs text-gray-500">{user?.email}</span>
+                <span className="text-xs text-gray-500 dark:text-white">{user?.email}</span>
               </li>
               <div className="divider my-2"></div>
               <li>

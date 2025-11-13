@@ -77,8 +77,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex justify-center items-center px-5">
-      <div className="card w-full max-w-md bg-white shadow-xl p-8 rounded-xl">
+    <div className="min-h-screen bg-base-200 flex justify-center items-center px-5 ">
+      <div className="card w-full max-w-md bg-white shadow-xl p-8 rounded-xl dark:bg-gray-800">
         
         <h1 className="text-3xl font-bold mb-6 text-center">
           Create Your Account

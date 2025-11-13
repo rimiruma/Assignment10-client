@@ -4,7 +4,7 @@ import homeImage from "../assets/banner2.png"; // replace with your image path
 
 const WhyHomeNest = () => {
     return (
-        <section className="bg-gray-50 py-16">
+        <section className="bg-gray-50 py-16 dark:bg-gray-800">
             <div className="container mx-auto px-5 flex flex-col lg:flex-row items-center gap-10">
                 
                 {/* Text Section */}
@@ -12,7 +12,7 @@ const WhyHomeNest = () => {
                     <h2 className="text-4xl font-bold mb-6">
                         Why <span className="text-orange-500">HomeNest?</span>
                     </h2>
-                    <p className="text-gray-700 leading-relaxed text-justify">
+                    <p className="text-gray-700 leading-relaxed text-justify dark:text-white">
                         We believe customer care in the hospitality industry is everything. Hence we always strive 
                         to deliver best customer service with consistency and high quality. We promise a great 
                         experience for our customer by providing clean rooms, friendly staff, and excellent services. 

@@ -13,11 +13,11 @@ const HomeFeatured = ({ property }) => {
                 />
             </figure>
 
-            <div className="card-body p-5">
+            <div className="card-body p-5 dark:bg-gray-800">
                 <h2 className="card-title text-xl font-semibold">{name}</h2>
-                <p className="text-gray-600 line-clamp-3">{description}</p>
-                <p className="text-sm text-gray-500">Category: {category}</p>
-                <p className="text-sm text-gray-500">Location: {location}</p>
+                <p className="text-gray-600 line-clamp-3 dark:text-white">{description}</p>
+                <p className="text-sm text-gray-500 dark:text-white">Category: {category}</p>
+                <p className="text-sm text-gray-500 dark:text-white">Location: {location}</p>
                 <p className="font-bold text-lg">Price: ${price.toLocaleString()}</p>
                 <div className="mt-4">
                 <Link to={`/propertyDetails/${_id}`} className="btn btn-primary px-16">View Details</Link>

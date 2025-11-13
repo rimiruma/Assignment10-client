@@ -141,21 +141,21 @@ const MyPropertiesPage = () => {
               <div className="flex gap-5 mt-4 text-xl">
                 <button
                   onClick={() => handleEdit(property)}
-                  className="text-blue-600 hover:text-blue-800 cursor-pointer transition-transform transform hover:scale-125"
+                  className="text-blue-600 hover:text-blue-800 cursor-pointer transition-transform transform hover:scale-125 dark:text-white"
                   title="Edit Property"
                 >
                   <FaEdit />
                 </button>
                 <button
                   onClick={() => handleDelete(property._id)}
-                  className="text-red-600 hover:text-red-800 cursor-pointer transition-transform transform hover:scale-125"
+                  className="text-red-600 hover:text-red-800 cursor-pointer transition-transform transform hover:scale-125 dark:text-white"
                   title="Delete Property"
                 >
                   <FaTrashAlt />
                 </button>
                 {/* ✅ Fixed View Details Button */}
                  <Link to={`/propertyDetails/${property._id}`}
-                  className="text-gray-700 hover:text-gray-900 cursor-pointer transition-transform transform hover:scale-125"
+                  className="text-gray-700 hover:text-gray-900 cursor-pointer dark:text-white dark:hover:text-white transition-transform transform hover:scale-125"
                   title="View Details"
                 >
                   <FaInfoCircle />

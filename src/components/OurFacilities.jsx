@@ -15,21 +15,21 @@ const OurFacilities = () => {
   ];
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 py-16 dark:bg-gray-800">
       <div className="max-w-6xl mx-auto px-6 md:flex md:items-center md:justify-between">
         
         {/* Left Text Section */}
         <div className="md:w-1/2 mb-10 md:mb-0">
-          <h2 className="text-4xl font-bold mb-6">
-            Our Facilities <span className="text-yellow-500">Includes</span>
+          <h2 className="text-4xl font-bold mb-6 dark:text-white">
+            Our Facilities <span className="text-yellow-500 dark:text-white">Includes</span>
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-6 dark:text-white">
             Budget prices but no compromise on facilities. We promise to make your stay a comfortable and memorable experience.
           </p>
 
           <ul className="space-y-3">
             {facilities.map((item, index) => (
-              <li key={index} className="flex items-start gap-3 text-gray-700">
+              <li key={index} className="flex items-start gap-3 dark:text-white text-gray-700">
                 <FaCheckCircle className="text-yellow-500 mt-1 flex-shrink-0" />
                 <span>{item}</span>
               </li>

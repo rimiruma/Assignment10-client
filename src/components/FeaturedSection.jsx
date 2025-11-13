@@ -11,7 +11,7 @@ const FeaturedSection = ({ featuredProductsPromise }) => {
         <div className="my-10 px-5">
             <div className="text-center mb-8">
                 {/* <h1 className="text-3xl font-bold">Featured Properties</h1> */}
-                <h1 className="text-2xl font-bold text-gray-800 text-center">
+                <h1 className="text-2xl font-bold text-gray-800 text-center dark:text-white">
                     Discover Amazing Properties<br />
                     For Your Dream Home
                 </h1>
