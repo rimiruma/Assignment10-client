@@ -32,7 +32,7 @@ const Banner = () => {
                         <p className="mt-2 text-sm lg:text-lg">
                             Find the perfect place to live your dream life.
                         </p>
-                        <button className="btn btn-primary px-10 mt-4">View More</button>
+                        <button className="btn btn-outline hover:bg-orange-600 hover:text-white px-20 mt-4">View More</button>
                     </div>
                 </SwiperSlide>
 
@@ -43,7 +43,7 @@ const Banner = () => {
                         <p className="mt-2 text-sm lg:text-lg">
                             Experience comfort and style like never before.
                         </p>
-                        <button className="btn btn-primary px-10 mt-4">See Details</button>
+                        <button className="btn btn-outline hover:bg-orange-600 hover:text-white px-20 mt-4">See Details</button>
                     </div>
                 </SwiperSlide>
 
@@ -54,7 +54,7 @@ const Banner = () => {
                         <p className="mt-2 text-sm lg:text-lg">
                             Wake up every day with a sea view.
                         </p>
-                        <button className="btn btn-primary px-10 mt-4">Explore</button>
+                        <button className="btn btn-outline hover:bg-orange-600 hover:text-white px-20 mt-4">Explore</button>
                     </div>
                 </SwiperSlide>
 
@@ -65,7 +65,7 @@ const Banner = () => {
                         <p className="mt-2 text-sm lg:text-lg">
                             Grow your business with the perfect location.
                         </p>
-                        <button className="btn btn-primary px-10 mt-4">Get Started</button>
+                        <button className="btn btn-outline hover:bg-orange-600 hover:text-white px-20 mt-4">Get Started</button>
                     </div>
                 </SwiperSlide>
 
