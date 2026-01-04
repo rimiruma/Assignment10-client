@@ -48,7 +48,7 @@ const PropertyDetails = () => {
       reviewText: review,
     };
 
-    const res = await fetch("https://assignment10-server-zeta.vercel.app/reviews", {
+    const res = await fetch("http://localhost:3000/reviews", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(reviewData),

@@ -14,7 +14,7 @@ const AllPropertiesPage = () => {
     setLoading(true);
     const timer = setTimeout(() => {
       fetch(
-        `https://assignment10-server-zeta.vercel.app/properties?sort=${sortOrder}&search=${searchText}`
+        `http://localhost:3000/properties?sort=${sortOrder}&search=${searchText}`
       )
         .then((res) => res.json())
         .then((data) => setProperties(data))
@@ -28,7 +28,7 @@ const AllPropertiesPage = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-8 dark:bg-gray-800">
       <div className="max-w-6xl mx-auto mb-8">
-        <h2 className="text-3xl font-bold text-center mb-2">All Properties</h2>
+        <h2 className="text-3xl font-bold text-center mb-2 mt-20">All Properties</h2>
         <p className="text-lg text-gray-600 text-center mb-8 dark:text-white">
           Explore our collection of homes and real estate listings available for sale and rent.
         </p>
@@ -110,7 +110,7 @@ const AllPropertiesPage = () => {
 
                     <Link
                       to={`/propertyDetails/${property._id}`}
-                      className="btn btn-sm p-5 bg-blue-600 text-white mt-3 w-full hover:bg-blue-700"
+                      className="btn btn-sm p-4 hover:bg-orange-500 btn-outline hover:text-white mt-3 w-full"
                     >
                       See Details
                     </Link>

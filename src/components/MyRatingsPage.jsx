@@ -12,7 +12,7 @@ const MyRatingsPage = () => {
     if (!user?.email) return;
 
     setLoading(true);
-    fetch(`https://assignment10-server-zeta.vercel.app/reviews-user?email=${user.email}`)
+    fetch(`http://localhost:3000/reviews-user?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

@@ -36,8 +36,8 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${isActive
-              ? "border-b-2 border-blue-500 text-blue-600"
-              : "text-gray-700 hover:text-blue-500 dark:text-white"
+              ? "border-b-2 border-orange-500 text-orange-600"
+              : "text-gray-700 hover:text-orange-500 dark:text-white"
             }`
           }
         >
@@ -49,58 +49,46 @@ const Navbar = () => {
           to="/allProperties"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${isActive
-              ? "border-b-2 border-blue-500 text-blue-600"
-              : "text-gray-700 hover:text-blue-500 dark:text-white"
+              ? "border-b-2 border-orange-500 text-orange-600"
+              : "text-gray-700 hover:text-orange-500 dark:text-white"
             }`
           }
         >
           <FaBuilding /> All Properties
         </NavLink>
       </li>
+
       <li>
         <NavLink
-          to="/addProperty"
+          to="/contactUs"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${isActive
-              ? "border-b-2 border-blue-500 text-blue-600"
-              : "text-gray-700 hover:text-blue-500 dark:text-white"
+              ? "border-b-2 border-orange-500 text-orange-600"
+              : "text-gray-700 hover:text-orange-500 dark:text-white"
             }`
           }
         >
-          <FaPlusCircle /> Add Property
+          <FaUserAlt /> Contact Us
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/myProperties"
+          to="/about-us"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 font-medium transition ${isActive
-              ? "border-b-2 border-blue-500 text-blue-600"
-              : "text-gray-700 hover:text-blue-500 dark:text-white"
+              ? "border-b-2 border-orange-500 text-orange-600"
+              : "text-gray-700 hover:text-orange-500 dark:text-white"
             }`
           }
         >
-          <FaUserAlt /> My Properties
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/myRatings"
-          className={({ isActive }) =>
-            `flex items-center gap-2 px-3 py-2 font-medium transition ${isActive
-              ? "border-b-2 border-blue-500 text-blue-600"
-              : "text-gray-700 hover:text-blue-500 dark:text-white"
-            }`
-          }
-        >
-          <FaStar /> My Ratings
+          <FaStar /> About Us
         </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md px-4 py-2 relative z-50">
+    <div className="navbar fixed top-0 left-0 w-full bg-base-100 shadow-md px-4 py-2 z-50">
       {/* Left */}
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
@@ -130,7 +118,7 @@ const Navbar = () => {
 
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Logo" className="w-10" />
-          <span className="text-xl font-bold text-primary">HomeNest</span>
+          <span className="text-xl font-bold text-orange-500">HomeNest</span>
         </Link>
       </div>
 
@@ -169,10 +157,10 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         {!user ? (
           <>
-            <Link to="/login" className="btn btn-primary btn-sm">
+            <Link to="/login" className="btn btn-outline hover:bg-orange-500 hover:text-white btn-sm">
               Login
             </Link>
-            <Link to="/signUp" className="btn btn-primary btn-sm">
+            <Link to="/signUp" className="btn btn-outline hover:bg-orange-500 hover:text-white btn-sm">
               SignUp
             </Link>
           </>
@@ -199,11 +187,14 @@ const Navbar = () => {
               <li>
                 <span className="text-xs text-gray-500 dark:text-white">{user?.email}</span>
               </li>
-              <div className="divider my-2"></div>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <div className="divider"></div>
               <li>
                 <button
                   onClick={handleLogout}
-                  className="btn btn-error btn-sm text-white w-full"
+                  className="btn btn-outline hover:bg-orange-500 btn-sm hover:text-white w-full"
                 >
                   Log Out
                 </button>

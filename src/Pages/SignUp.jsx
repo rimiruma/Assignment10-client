@@ -17,7 +17,7 @@ const SignUp = () => {
       created_at: new Date()
     };
 
-    await fetch("https://assignment10-server-zeta.vercel.app/users", {
+    await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userData),
@@ -77,7 +77,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex justify-center items-center px-5 ">
+    <div className="min-h-screen mt-16 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
       <div className="card w-full max-w-md bg-white shadow-xl p-8 rounded-xl dark:bg-gray-800">
         
         <h1 className="text-3xl font-bold mb-6 text-center">
@@ -96,7 +96,7 @@ const SignUp = () => {
 
           {error && <p className="text-red-500 mb-2 text-sm">{error}</p>}
 
-          <button className="btn btn-primary w-full mt-2">Sign Up</button>
+          <button className="btn btn-outline hover:bg-orange-500 hover:text-white w-full mt-2">Sign Up</button>
         </form>
 
         <button

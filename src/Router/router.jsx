@@ -10,6 +10,13 @@ import MyRatingsPage from "../components/MyRatingsPage";
 import AllPropertiesPage from "../components/AllPropertiesPage";
 import MyPropertiesPage from "../components/MyPropertiesPage";
 import ErrorPage from "../components/ErrorPage";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import DashboardHome from "../Dashboard/DashboardHome";
+import Profile from "../Dashboard/Profile";
+import AboutUs from "../components/AboutUs";
+import ContactUs from "../components/ContactUs";
+import AdminRoute from "./AdminRoute";
+import ManageUsers from "../AdminDashboard/ManageUsers";
 
 const router = createBrowserRouter([
     {
@@ -21,33 +28,23 @@ const router = createBrowserRouter([
                 Component: HomeLayouts,
             },
             {
-                path: '/addProperty',
-                element: <PrivateRoute>
-                    <AddPropertyPage></AddPropertyPage>
-                </PrivateRoute>
-            },
-            {
                 path: '/propertyDetails/:id',
-                loader: ({ params }) => fetch(`https://assignment10-server-zeta.vercel.app/properties/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:3000/properties/${params.id}`),
                 element: <PrivateRoute>
                     <PropertyDetails></PropertyDetails>
                 </PrivateRoute>
             },
             {
-                path: '/myProperties',
-                element: <PrivateRoute>
-                    <MyPropertiesPage></MyPropertiesPage>
-                </PrivateRoute>
-            },
-            {
-                path: '/myRatings',
-                element: <PrivateRoute>
-                    <MyRatingsPage></MyRatingsPage>
-                </PrivateRoute>
-            },
-            {
                 path: '/allProperties',
                 Component: AllPropertiesPage
+            },
+            {
+                path: '/about-us',
+                Component: AboutUs
+            },
+            {
+                path: "/contactUs",
+                Component: ContactUs
             },
             {
                 path: '/signUp',
@@ -60,6 +57,51 @@ const router = createBrowserRouter([
 
         ]
     },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
+            {
+                index: true, // 👉 এটা খুব গুরুত্বপূর্ণ
+                element: <DashboardHome />,
+            },
+            {
+                path: "add-property",
+                element: <AddPropertyPage />,
+            },
+            {
+                path: "profile",
+                element: <Profile />,
+            },
+            {
+                path: "my-properties",
+                element: <MyPropertiesPage />,
+            },
+            {
+                path: "my-ratings",
+                element: <MyRatingsPage />,
+            },
+            {
+                path: "manage-users",
+                element: <AdminRoute>
+                    <ManageUsers />
+                </AdminRoute>,
+            },
+            {
+                path: "admin-home",
+                element: <AdminRoute>
+                    <DashboardHome />
+                </AdminRoute>,
+            },
+            {
+                path: "manage-properties",
+                element: <AdminRoute>
+                    <AllPropertiesPage />
+                </AdminRoute>,
+            },
+        ],
+    },
+
     {
         path: "*",
         Component: ErrorPage,

@@ -15,7 +15,7 @@ const MyPropertiesPage = () => {
   useEffect(() => {
     if (!user?.email) return;
     setLoading(true);
-    fetch(`https://assignment10-server-zeta.vercel.app/properties?email=${user.email.toLowerCase()}`)
+    fetch(`http://localhost:3000/properties?email=${user.email.toLowerCase()}`)
       .then((res) => res.json())
       .then((data) => {
         setMyProperties(data);
@@ -36,7 +36,7 @@ const MyPropertiesPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://assignment10-server-zeta.vercel.app/properties/${id}`, { method: "DELETE" })
+        fetch(`http://localhost:3000/properties/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -75,7 +75,7 @@ const MyPropertiesPage = () => {
       image: form.image.value,
     };
 
-    fetch(`https://assignment10-server-zeta.vercel.app/properties/${selectedProperty._id}`, {
+    fetch(`http://localhost:3000/properties/${selectedProperty._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedProperty),
