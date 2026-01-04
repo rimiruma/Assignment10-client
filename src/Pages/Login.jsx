@@ -10,6 +10,7 @@ const Login = () => {
 
   const { signIn, googleSignIn } = useContext(AuthContext);
 
+  // ---------------- NORMAL LOGIN ----------------
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -17,8 +18,7 @@ const Login = () => {
 
     signIn(email, password)
       .then(() => {
-        toast.success("Login Successful!");
-        navigate("/");
+        redirectByRole(email);
       })
       .catch((err) => {
         setError(err.message);
@@ -26,11 +26,12 @@ const Login = () => {
       });
   };
 
+  // ---------------- GOOGLE LOGIN ----------------
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then(() => {
-        toast.success("Google Login Successful!");
-        navigate("/");
+      .then((result) => {
+        const email = result.user.email;
+        redirectByRole(email);
       })
       .catch((err) => {
         setError(err.message);
@@ -38,32 +39,45 @@ const Login = () => {
       });
   };
 
-  const handleDemoLogin = (type) => {
-    let email = "";
-    let password = "";
+  // ---------------- DEMO LOGIN ----------------
+const handleDemoLogin = async (type) => {
+  try {
+    // backend port ঠিক করা
+    const res = await fetch(`http://localhost:3000/demo-login/${type}`);
+    if (!res.ok) throw new Error("No demo user found");
 
-    if (type === "user") {
-      email = "demo@user.com";
-      password = "demo123";
-    } else if (type === "admin") {
-      email = "admin@site.com";
-      password = "admin123";
-    }
+    const data = await res.json();
+    const email = data.email;
 
-    signIn(email, password)
-      .then(() => {
-        toast.success(`${type === "user" ? "User" : "Admin"} Demo Login Successful!`);
-        navigate("/");
-      })
-      .catch((err) => {
-        setError(err.message);
-        toast.error(err.message);
+    await signIn(email, DEMO_PASSWORD);
+
+    toast.success(`${type === "admin" ? "Admin" : "User"} Demo Login Successful!`);
+
+    redirectByRole(email); // role-based redirect
+  } catch (err) {
+    console.error(err);
+    toast.error("Demo login failed: " + err.message);
+  }
+};
+
+
+
+
+  // ---------------- ROLE BASED REDIRECT ----------------
+  const redirectByRole = (email) => {
+    fetch(`http://localhost:3000/users/role/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.role === "admin") {
+          navigate("/");
+        } else {
+          navigate("/");
+        }
       });
   };
 
   return (
     <div className="min-h-screen mt-16 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
-      
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -130,17 +144,22 @@ const Login = () => {
           transition={{ delay: 0.3 }}
         >
           <button
+            type="button"
             onClick={() => handleDemoLogin("user")}
             className="btn btn-sm btn-outline hover:bg-orange-500 hover:text-white w-1/2"
           >
             Demo User
           </button>
+
           <button
+            type="button"
             onClick={() => handleDemoLogin("admin")}
             className="btn btn-sm btn-outline hover:bg-orange-500 hover:text-white w-1/2"
           >
             Demo Admin
           </button>
+
+
         </motion.div>
 
         <p className="mt-4 text-center text-gray-700 dark:text-gray-300">
